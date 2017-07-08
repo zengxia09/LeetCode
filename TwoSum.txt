@@ -1,0 +1,42 @@
+/* first version */
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        for(int i=0; i<nums.size()-1; ++i)
+        {
+            for(int j=i+1; j<nums.size(); ++j)
+            {
+                if(target==nums[i]+nums[j])
+                {
+                    vector<int> result;
+                    result.push_back(i);
+                    result.push_back(j);
+                    return result;
+                }    
+            }
+        }
+    }
+};
+
+/* second version */
+#include <map>
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> map;
+
+        int length = nums.size();
+        for(int i=0; i<length; ++i)
+        {
+            if(map.find(nums[i])!=map.end())
+            {
+                vector<int> result{map[nums[i]], i};
+                return result;
+            }
+            else
+            {
+                map[target-nums[i]] = i;
+            }
+        }
+    }
+};
